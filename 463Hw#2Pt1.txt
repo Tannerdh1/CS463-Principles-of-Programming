@@ -1,0 +1,27 @@
+1:
+(defun tdh_addEvens (L)
+	(cond ((null L) 0) ;0 if the list is empty
+		  ((= (mod (car L) 2) 0) (+ (car L) (tdh_addEvens (cdr L)))) ;If the first element is even add it, and recursive call with the first element removed
+		  (t (tdh_addEvens (cdr L))) ;If it's odd, recursive call with the list with the first element removed
+	)
+)
+
+2:
+;2 Helper functions that give a list of Evens and a list of Odds
+(defun tdh_getEvens (L)
+	(cond ((null L) ())
+		  ((= (mod (car L) 2) 0) (cons (car L) (tdh_getEvens (cdr L))))
+		  (t (tdh_getEvens (cdr L)))
+	)
+)
+
+(defun tdh_getOdds (L)
+	(cond ((null L) ())
+		  ((= (mod (car L) 2) 1) (cons (car L) (tdh_getOdds (cdr L))))
+		  (t (tdh_getOdds (cdr L)))
+	)
+)
+
+(defun tdh_evensOdds (L)
+	(cons (tdh_getEvens L) (tdh_getOdds L))
+)
